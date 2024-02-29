@@ -2,7 +2,7 @@
 
 pragma solidity ^0.8.20;
 
-import "./ERC20Token.sol";
+import "./ERC20.sol";
 
 import {VRFCoordinatorV2Interface} from "@chainlink/contracts@0.8.0/src/v0.8/interfaces/VRFCoordinatorV2Interface.sol";
 import {VRFConsumerBaseV2} from "@chainlink/contracts@0.8.0/src/v0.8/vrf/VRFConsumerBaseV2.sol";

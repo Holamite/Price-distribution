@@ -3,5 +3,10 @@
   "devDependencies": {
     "@nomicfoundation/hardhat-toolbox": "^4.0.0",
     "hardhat": "^2.20.1"
+  },
+  "dependencies": {
+    "@chainlink/contracts": "file:0.8.0/src/v0.8/vrf/VRFConsumerBaseV2.sol",
+    "@openzeppelin/contracts": "^5.0.2",
+    "dotenv": "^16.4.5"
   }
 }

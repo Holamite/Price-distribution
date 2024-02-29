@@ -1,22 +1,27 @@
 import { ethers } from "hardhat";
 
 async function main() {
-  const currentTimestampInSeconds = Math.round(Date.now() / 1000);
-  const unlockTime = currentTimestampInSeconds + 60;
+  const ownerAddress = "0x19a14D73e298Fc0E7b9b039Fda0d85eDbb1b460A";
+  const vrfCoordinatorAddress = "0x8103b0a8a00be2ddc778e6e7eaa21791cd364625";
+  const linkTokenAddress = "0x779877a7b0d9e8603169ddbd7836e478b4624789";
+  const keyHash =
+    "0x474e34a077df58807dbe9c96d3c009b23b3c6d0cce433e59bbf5b34f823bc56c";
+  const fee = "3";
+  const tokenAddress = "0x779877a7b0d9e8603169ddbd7836e478b4624789";
 
-  const lockedAmount = ethers.parseEther("0.001");
+  // const Airdrop = await ethers.getContractFactory("Airdrop");
+  const airdrop = await ethers.deployContract("Airdrop", [
+    vrfCoordinatorAddress,
+    linkTokenAddress,
+    keyHash,
+    fee,
+    tokenAddress,
+    ownerAddress,
+  ]);
 
-  const lock = await ethers.deployContract("Lock", [unlockTime], {
-    value: lockedAmount,
-  });
+  await airdrop.waitForDeployment();
 
-  await lock.waitForDeployment();
-
-  console.log(
-    `Lock with ${ethers.formatEther(
-      lockedAmount
-    )}ETH and unlock timestamp ${unlockTime} deployed to ${lock.target}`
-  );
+  console.log(`Airdrop contract deployed to address: ${airdrop.target}`);
 }
 
 // We recommend this pattern to be able to use async/await everywhere
